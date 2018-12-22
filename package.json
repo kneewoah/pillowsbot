@@ -1,0 +1,12 @@
+{
+  "name": "pillows",
+  "version": "0.0.1",
+  "description": "Newo's Bot",
+  "main": "bot.js",
+  "author": "Newo",
+  "license": "ISC",
+  "dependencies": {
+    "discord.js": "^11.4.2",
+    "moment": "^2.22.2"
+  }
+}
