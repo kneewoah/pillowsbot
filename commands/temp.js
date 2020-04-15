@@ -12,7 +12,7 @@ exports.run = async (client, message, args) => {
     id: `${message.author.id}`,
     xp: xpGiven,
     level: 0,
-    lastMessage: time;
+    lastMessage: time
   }
 
   if (!index) {
