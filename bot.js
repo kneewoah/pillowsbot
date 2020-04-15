@@ -63,4 +63,4 @@ client.on("guildMemberAdd", member => {
 client.on('error', console.error);
 
 // TOKEN
-client.login(process.env.token);
+client.login(process.env.TOKEN);
