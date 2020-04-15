@@ -2,7 +2,7 @@ const config = require("../config.json");
 
 exports.run = async (client, message, args) => {
 
-  var author = `${message.author}`
+  var author = `${message.author}`;
 
   var query;
   if (args[0].match(/^#(?:[0-9a-fA-F]{6})$/g)) {
@@ -40,12 +40,11 @@ exports.run = async (client, message, args) => {
   };
 
   function addRole(id) {
-    let roleID = findRoll(id).id;
+    let roleID = findRole(id).id;
     message.member.addRole(roleID);
   };
 
 };
-
 
 exports.help = {
   description: "Get a custom role color in discord",
