@@ -37,7 +37,7 @@ async function makeRole(color, id) {
 };
 
 async function addRole(roleName) {
-  message.member.addRole(message.guild.roles.find(role => role.name === roleName););
+  message.member.addRole(message.guild.roles.find(role => role.name === roleName));
 };
 
 };
