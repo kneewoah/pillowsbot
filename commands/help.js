@@ -3,7 +3,7 @@ const fs = require("fs");
 
 exports.run = (client, message, args) => {
 
-  fs.readdir("/Users/owen/Desktop/Discord Bots/Newo-Bot/commands", (err, files) => {
+  fs.readdir("./", (err, files) => {
       if(err) console.error(err);
 
       let cmdArray = files.filter(f => f.split(".").pop() === "js").sort().map(function(cmd) {return cmd.charAt(0).toUpperCase() + cmd.slice(1, cmd.length - 3)}).map(x => [x]);
@@ -15,7 +15,6 @@ exports.run = (client, message, args) => {
       });
 
       if(args[0]) {
-
 
         var cmdNameLower = args[0].toLowerCase()
         if (args[0].indexOf(config.prefix) === 0) {
