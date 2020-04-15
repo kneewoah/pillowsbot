@@ -18,8 +18,8 @@ client.on("message", async message => {
 
   if(message.author.bot || message.content.indexOf(config.prefix) !== 0) return;
 
-  const args = message.content.slice(config.prefix.length).trim().split(/ +/g);
-  const command = args.shift().toLowerCase();
+  var args = message.content.slice(config.prefix.length).trim().split(/ +/g);
+  var command = args.shift().toLowerCase();
 
   let msgGuild;
   if(!message.guild) {
@@ -48,10 +48,10 @@ client.on("guildMemberAdd", member => {
 
   let roleName = `${member.id}`
   if(member.guild.roles.find(role => role.name === roleName)) {
-    var roleID = member.guild.roles.find(role => role.name === roleName).id;
+    let roleID = member.guild.roles.find(role => role.name === roleName).id;
     member.addRole(roleID);
   } else {
-    const channel = member.guild.channels.find(ch => ch.id === "434701823358795782" || ch.id === "591095105709015053" || ch.name === "general");
+    let channel = member.guild.channels.find(ch => ch.id === config.pillowsGeneralID || ch.id === config.testingChannelID);
     if (!channel) return;
     channel.send(`Welcome ${member.displayName}! Type \`!color #HEXCODEHERE\` to chose your role color! You can choose a color here: <https://tr.im/hexwheel>.`);
   };
