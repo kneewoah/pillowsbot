@@ -24,6 +24,7 @@ async function changeColor(color, who) {
 async function deleteRole() {
   let role = await findRole();
   if (role) role.delete();
+  message.channel.send("Role deleted");
 };
 
 async function findRole(roleName) {
@@ -35,13 +36,13 @@ async function makeRole(color, id) {
     name: id,
     color: `0x${color}`,
     hoist: false,
-    mentionable: false,
+    mentionable: false,\
   });
+  message.channel.send("Role maked");
 };
 
 async function addRole(id) {
-  let role = await findRole(id);
-  message.member.addRole(role.id);
+  message.member.addRole(await findRole(id).id);
 };
 
 };
