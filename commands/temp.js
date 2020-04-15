@@ -3,7 +3,7 @@ const config = require("../config.json");
 const fs = require('fs');
 
 exports.run = async (client, message, args) => {
-  var xpData = JSON.parse(fs.readFileSync('../xp.json'));
+  var xpData = JSON.parse(fs.readFileSync('./xp.json'));
   //var index = xpData.findIndex(entry => entry.id == message.author.id);
   // if (!index) {
   //   var newData = {
