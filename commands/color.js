@@ -6,7 +6,7 @@ exports.run = async (client, message, args) => {
   if (args[0].match(/^#(?:[0-9a-fA-F]{6})$/g)) {
     changeColor(args[0], message.author);
   } else if (args[0].match(/^(?:[0-9a-fA-F]{6})$/g)) {
-    changeColor(args[0].substring(1);, message.author);
+    changeColor(args[0].substring(1), message.author);
   } else {
     message.channel.send("Please enter a 6 digit hex code. You can select a color here: <https://htmlcolorcodes.com/color-picker/>");
   }
