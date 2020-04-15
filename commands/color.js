@@ -7,19 +7,19 @@ exports.run = async (client, message, args) => {
   var query;
   if (args[0].match(/^#(?:[0-9a-fA-F]{6})$/g)) {
     query = args[0]
-    changeColor();
+    changeColor(query, author);
   } else if (args[0].match(/^(?:[0-9a-fA-F]{6})$/g)) {
     query = args[0].substring(1);
-    changeColor();
+    changeColor(query, author);
   } else {
     message.channel.send("Please enter a 6 digit hex code. You can select a color here: <https://htmlcolorcodes.com/color-picker/>");
   }
 };
 
-async function changeColor() {
+async function changeColor(color, who) {
   deleteRole();
-  setTimeout(function() {makeRole(query, author.id)}, 400);
-  setTimeout(function() {addRole(author.id)}, 800);
+  setTimeout(function() {makeRole(color, who.id)}, 400);
+  setTimeout(function() {addRole(who.id)}, 800);
 };
 
 async function deleteRole() {
