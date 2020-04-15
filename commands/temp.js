@@ -14,9 +14,9 @@ exports.run = async (client, message, args) => {
     level: 0,
     lastMessage: time
   }
-  console.log(newData);
+  // console.log(newData);
 
-  if (!index) {
+  if (index == -1) {
     xpData.push(newData);
   } else if (Math.abs(time - parseInt(xpData[index].lastMessage)) < 60) {
     return;
