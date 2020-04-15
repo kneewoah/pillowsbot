@@ -22,18 +22,14 @@ async function changeColor(color, who) {
 };
 
 async function deleteRole() {
-  let role = await findRole();
+  let role = await message.guild.roles.find(role => role.name === roleName);
   if (role) role.delete();
   message.channel.send("Role deleted");
 };
 
-async function findRole(roleName) {
-  return message.guild.roles.find(role => role.name === roleName);
-};
-
 async function makeRole(color, id) {
   message.guild.createRole({
-    name: id,
+    name: `${id}`,
     color: `0x${color}`,
     hoist: false,
     mentionable: false,
@@ -42,7 +38,8 @@ async function makeRole(color, id) {
 };
 
 async function addRole(id) {
-  message.member.addRole(await findRole(id));
+  let role = await message.guild.roles.find(role => role.name === roleName);
+  message.member.addRole(role.id);
 };
 
 };
