@@ -38,6 +38,7 @@ client.on("message", async message => {
     message.react("☁")
   } catch (error) {
     console.log(`${timestamp}: Could not process command \'${command}\'.`);
+    console.log(error);
   }
 
 });
