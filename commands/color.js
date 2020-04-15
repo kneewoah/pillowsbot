@@ -14,7 +14,6 @@ exports.run = async (client, message, args) => {
   } else {
     message.channel.send("Please enter a 6 digit hex code. You can select a color here: <https://htmlcolorcodes.com/color-picker/>");
   }
-};
 
 async function changeColor(color, who) {
   deleteRole();
@@ -43,6 +42,8 @@ async function makeRole(color, id) {
 async function addRole(id) {
   let role = await findRole(id);
   message.member.addRole(roleID.id);
+};
+
 };
 
 exports.help = {
