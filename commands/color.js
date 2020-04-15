@@ -2,13 +2,13 @@ const config = require("../config.json");
 
 exports.run = async (client, message, args) => {
 
-  var query;
+  if (!args[0]) message.channel.send("Please select a color here: <https://htmlcolorcodes.com/color-picker/>. Then, you may type \`!color #URCODE\`");
   if (args[0].match(/^#(?:[0-9a-fA-F]{6})$/g)) {
     changeColor(args[0], message.author);
   } else if (args[0].match(/^(?:[0-9a-fA-F]{6})$/g)) {
     changeColor(args[0].substring(1), message.author);
   } else {
-    message.channel.send("Please enter a 6 digit hex code. You can select a color here: <https://htmlcolorcodes.com/color-picker/>");
+    message.channel.send("The code you entered did not match the correct format. You can select a color here: <https://htmlcolorcodes.com/color-picker/>");
   }
 
 function changeColor(color, author) {
@@ -20,7 +20,6 @@ function changeColor(color, author) {
 function deleteRole(roleName) {
   if (message.guild.roles.find(role => role.name === roleName)) {
     message.guild.roles.find(role => role.name === roleName).delete();
-    message.channel.send("Role deleted");
   }
 };
 
@@ -31,7 +30,6 @@ function makeRole(color, id) {
     hoist: false,
     mentionable: false,
   });
-  message.channel.send("Role maked");
 };
 
 function addRole(user) {
