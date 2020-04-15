@@ -27,7 +27,7 @@ exports.run = async (client, message, args) => {
   } else {
     message.reply(rb + " has been muted.");
     await rb.addRole(role.id)
-          .catch(error => message.reply(`Sorry ${message.author} I couldn't unmute because of : ${error}`));
+          .catch(error => message.reply(`Sorry ${message.author} I couldn't unmute because of : ${error}. Maybe they have a higher role?`));
   }
 
 };

@@ -11,7 +11,7 @@ exports.run = async (client, message, args) => {
   if(!reason) reason = "having an ugly face";
 
   await member.ban(reason)
-    .catch(error => message.reply(`Sorry ${message.author} I couldn't ban because of : ${error}`));
+    .catch(error => message.reply(`Sorry ${message.author} I couldn't ban because of : ${error}Maybe they have a higher role?`));
   message.reply(`${member.user.tag} has been banned by ${message.author.tag} for ${reason}`);
 
 };

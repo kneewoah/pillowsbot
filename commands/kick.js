@@ -9,13 +9,13 @@ exports.run = async (client, message, args) => {
 
   let reason;
    if(!args[1]) {
-     reason = "suck my dick";
+     reason = "being a faggot";
    } else {
      reason = args.splice(0, 1).join(" ");
    };
 
   await member.kick(reason)
-    .catch(error => message.reply(`Sorry ${message.author} I couldn't kick because of : ${error}`));
+    .catch(error => message.reply(`Sorry ${message.author} I couldn't kick the user because of : ${error}`));
   message.reply(`${member.user.tag} has been kicked by ${message.author.tag} for ${reason}`);
 
 }
