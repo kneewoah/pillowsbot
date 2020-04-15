@@ -21,7 +21,7 @@ client.on("message", async message => {
   var args = message.content.slice(config.prefix.length).trim().split(/ +/g);
   var command = args.shift().toLowerCase();
 
-  let msgGuild;
+  var msgGuild;
   if(!message.guild) {
     msgGuild = "Direct Messages";
   } else {
@@ -37,7 +37,6 @@ client.on("message", async message => {
     console.log(`${timestamp}: Processed command \'${command}\' succesfully.`);
     message.react("☁")
   } catch (error) {
-    //console.log(error);
     console.log(`${timestamp}: Could not process command \'${command}\'.`);
   }
 
