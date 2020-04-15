@@ -22,7 +22,7 @@ exports.run = async (client, message, args) => {
   };
 
   function deleteRole() {
-    let role = findRole()
+    let role = await findRole()
     if (role) role.delete();
   };
 
@@ -40,8 +40,8 @@ exports.run = async (client, message, args) => {
   };
 
   function addRole(id) {
-    let roleID = findRole(id).id;
-    message.member.addRole(roleID);
+    let role = await findRole(id);
+    message.member.addRole(roleID.id);
   };
 
 };
