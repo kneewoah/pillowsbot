@@ -5,7 +5,6 @@ const config = require("./config.json");
 const moment = require('moment')
 const timestamp = moment().format('HH:mm:ss');
 
-
 // ON READY
 client.on("ready", () => {
 

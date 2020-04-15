@@ -5,9 +5,9 @@ exports.run = async (client, message, args) => {
   if (!args[0]) message.channel.send("Please select a color here: <https://htmlcolorcodes.com/color-picker/>. Then, you may type \`!color #URCODE\`");
 
   if (args[0].match(/^#(?:[0-9a-fA-F]{6})$/g)) {
-    changeColor(args[0], message.author);
-  } else if (args[0].match(/^(?:[0-9a-fA-F]{6})$/g)) {
     changeColor(args[0].substring(1), message.author);
+  } else if (args[0].match(/^(?:[0-9a-fA-F]{6})$/g)) {
+    changeColor(args[0], message.author);
   } else {
     message.channel.send("The code you entered did not match the correct format. You can select a color here: <https://htmlcolorcodes.com/color-picker/>");
   }
