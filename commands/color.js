@@ -16,14 +16,13 @@ exports.run = async (client, message, args) => {
   }
 
 async function changeColor(color, who) {
-  deleteRole();
+  deleteRole(who.id);
   setTimeout(function() {makeRole(color, who.id)}, 400);
   setTimeout(function() {addRole(who.id)}, 1200);
 };
 
-async function deleteRole() {
-  let role = await message.guild.roles.find(role => role.name === roleName);
-  if (role) role.delete();
+async function deleteRole(roleName) {
+  if (message.guild.roles.find(role => role.name === roleName)) message.guild.roles.find(role => role.name === roleName).delete();
   message.channel.send("Role deleted");
 };
 
