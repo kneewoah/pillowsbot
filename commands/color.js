@@ -16,7 +16,7 @@ exports.run = async (client, message, args) => {
   }
 };
 
-function changeColor() {
+async function changeColor() {
   deleteRole();
   setTimeout(function() {makeRole(query, author.id)}, 400);
   setTimeout(function() {addRole(author.id)}, 800);
