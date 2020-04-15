@@ -5,8 +5,6 @@ const config = require("./config.json");
 const moment = require('moment');
 const fs = require('fs');
 
-
-
 // ON READY
 client.on("ready", () => {
 
