@@ -3,7 +3,9 @@ const Discord = require('discord.js');
 const client = new Discord.Client({disableEveryone: true});
 const config = require("./config.json");
 const moment = require('moment')
-const timestamp = moment().format('HH:mm:ss');
+const fs = require("fs");
+
+
 
 // ON READY
 client.on("ready", () => {
@@ -14,6 +16,7 @@ client.on("ready", () => {
 
 // ON MESSAGE
 client.on("message", async message => {
+  var timestamp = moment().format('HH:mm:ss');
 
   if(message.author.bot || message.content.indexOf(config.prefix) !== 0) return;
 
