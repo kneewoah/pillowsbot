@@ -3,13 +3,13 @@ const fs = require("fs");
 
 exports.run = (client, message, args) => {
 
-  fs.readdir("./", (err, files) => {
+  fs.readdir("../commands", (err, files) => {
       if(err) console.error(err);
 
       let cmdArray = files.filter(f => f.split(".").pop() === "js").sort().map(function(cmd) {return cmd.charAt(0).toUpperCase() + cmd.slice(1, cmd.length - 3)}).map(x => [x]);
 
       cmdArray.forEach(function(subArray) {
-        var name = subArray[0]
+        var name = subArray[0];
         var cmdFile = require(`./${name}.js`);
         subArray.push(cmdFile.help.description, cmdFile.help.usage);
       });
