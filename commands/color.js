@@ -2,45 +2,49 @@ const config = require("../config.json");
 
 exports.run = async (client, message, args) => {
 
-var queryColor = args[0];
-var roleName = `${message.author.id}`
+  var author = `${message.author}`
 
-function deleteRole() {
-  if(message.guild.roles.find(role => role.name === roleName)) {
-    message.guild.roles.find(role => role.name === roleName).delete();
+  var query;
+  if (args[0].match(/^#(?:[0-9a-fA-F]{6})$/g)) {
+    query = args[0]
+    changeColor();
+  } else if (args[0].match(/^(?:[0-9a-fA-F]{6})$/g)) {
+    query = args[0].substring(1);
+    changeColor();
+  } else {
+    message.channel.send("Please enter a 6 digit hex code. You can select a color here: <https://htmlcolorcodes.com/color-picker/>");
+  }
+
+  function changeColor() {
+    deleteRole();
+    setTimeout(function() {makeRole(query, author.id)}, 400);
+    setTimeout(function() {addRole(author.id)}, 800);
+  };
+
+  function deleteRole() {
+    let role = findRole()
+    if (role) role.delete();
+  };
+
+  function findRole(roleName) {
+    return message.guild.roles.find(role => role.name === roleName);
+  };
+
+  function makeRole(color, id) {
+    message.guild.createRole({
+      name: id,
+      color: `0x${color}`,
+      hoist: false,
+      mentionable: false,
+    });
+  };
+
+  function addRole(id) {
+    let roleID = findRoll(id).id;
+    message.member.addRole(roleID);
   };
 
 };
-
-function makeRole() {
-  message.guild.createRole({
-    name: roleName,
-    color: `0x${queryColor.slice(1)}`,
-    hoist: false,
-    mentionable: false,
-  });
-};
-
-function findAddRole() {
-  var roleID = message.guild.roles.find(role => role.name === roleName).id;
-  message.member.addRole(roleID);
-};
-
-if(queryColor.startsWith("#") && queryColor.length === 7) {
-
-  deleteRole();
-  setTimeout(function(){
-    makeRole();
-  }, 400);
-  setTimeout(function(){
-    findAddRole();
-  }, 800);
-  message.channel.send("Role color updated!")
-
-} else {
-  message.channel.send("Please enter a 6 digit hex code.");
-
-}};
 
 
 exports.help = {
