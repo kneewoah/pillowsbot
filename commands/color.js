@@ -18,7 +18,7 @@ exports.run = async (client, message, args) => {
 async function changeColor(color, who) {
   deleteRole(who.id);
   setTimeout(function() {makeRole(color, who.id)}, 400);
-  setTimeout(function() {addRole(who.id)}, 1200);
+  setTimeout(function() {addRole(who.id)}, 1600);
 };
 
 async function deleteRole(roleName) {
@@ -37,8 +37,7 @@ async function makeRole(color, id) {
 };
 
 async function addRole(roleName) {
-  let role = await message.guild.roles.find(role => role.name === roleName);
-  message.member.addRole(role.id);
+  message.member.addRole(message.guild.roles.find(role => role.name === roleName););
 };
 
 };
