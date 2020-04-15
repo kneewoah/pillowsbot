@@ -18,7 +18,7 @@ exports.run = async (client, message, args) => {
 async function changeColor(color, who) {
   deleteRole();
   setTimeout(function() {makeRole(color, who.id)}, 400);
-  setTimeout(function() {addRole(who.id)}, 800);
+  setTimeout(function() {addRole(who.id)}, 1200);
 };
 
 async function deleteRole() {
