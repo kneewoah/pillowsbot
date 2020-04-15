@@ -15,35 +15,35 @@ exports.run = async (client, message, args) => {
     message.channel.send("Please enter a 6 digit hex code. You can select a color here: <https://htmlcolorcodes.com/color-picker/>");
   }
 
-  function changeColor() {
-    deleteRole();
-    setTimeout(function() {makeRole(query, author.id)}, 400);
-    setTimeout(function() {addRole(author.id)}, 800);
-  };
+};
 
-  function deleteRole() {
-    let role = await findRole()
-    if (role) role.delete();
-  };
+function changeColor() {
+  deleteRole();
+  setTimeout(function() {makeRole(query, author.id)}, 400);
+  setTimeout(function() {addRole(author.id)}, 800);
+};
 
-  function findRole(roleName) {
-    return message.guild.roles.find(role => role.name === roleName);
-  };
+function deleteRole() {
+  let role = await findRole();
+  if (role) role.delete();
+};
 
-  function makeRole(color, id) {
-    message.guild.createRole({
-      name: id,
-      color: `0x${color}`,
-      hoist: false,
-      mentionable: false,
-    });
-  };
+function findRole(roleName) {
+  return message.guild.roles.find(role => role.name === roleName);
+};
 
-  function addRole(id) {
-    let role = await findRole(id);
-    message.member.addRole(roleID.id);
-  };
+function makeRole(color, id) {
+  message.guild.createRole({
+    name: id,
+    color: `0x${color}`,
+    hoist: false,
+    mentionable: false,
+  });
+};
 
+function addRole(id) {
+  let role = await findRole(id);
+  message.member.addRole(roleID.id);
 };
 
 exports.help = {
