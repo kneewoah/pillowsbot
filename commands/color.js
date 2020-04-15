@@ -36,7 +36,7 @@ function makeRole(color, id) {
 
 function addRole(user) {
   let roleID = message.guild.roles.find(role => role.name === user.id).id;
-  user.addRole(roleID);
+  message.member.addRole(roleID);
 };
 
 };
