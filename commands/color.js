@@ -15,18 +15,18 @@ exports.run = async (client, message, args) => {
     message.channel.send("Please enter a 6 digit hex code. You can select a color here: <https://htmlcolorcodes.com/color-picker/>");
   }
 
-async function changeColor(color, who) {
+function changeColor(color, who) {
   deleteRole(who.id);
   setTimeout(function() {makeRole(color, who.id)}, 400);
   setTimeout(function() {addRole(who.id)}, 1600);
 };
 
-async function deleteRole(roleName) {
+function deleteRole(roleName) {
   if (message.guild.roles.find(role => role.name === roleName)) message.guild.roles.find(role => role.name === roleName).delete();
   message.channel.send("Role deleted");
 };
 
-async function makeRole(color, id) {
+function makeRole(color, id) {
   message.guild.createRole({
     name: `${id}`,
     color: `0x${color}`,
@@ -36,8 +36,9 @@ async function makeRole(color, id) {
   message.channel.send("Role maked");
 };
 
-async function addRole(roleName) {
-  message.member.addRole(message.guild.roles.find(role => role.name === roleName).id);
+function addRole(roleName) {
+  let roleID = message.guild.roles.find(role => role.name === roleName).id;
+  message.member.addRole(roleID);
 };
 
 };
