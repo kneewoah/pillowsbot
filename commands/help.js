@@ -35,7 +35,6 @@ exports.run = (client, message, args) => {
         };
 
       } else {
-
           message.author.send(`\`Newo Bot Commands\` \n${cmdArray.map(subArray2 => `**${subArray2[0]}** \n__Description__: ${subArray2[1]} \n__Usage__: ${subArray2[2]}`).join('\n\n')}`);
       }
 

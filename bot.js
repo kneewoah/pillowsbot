@@ -18,11 +18,12 @@ client.on("ready", () => {
 client.on("message", async message => {
   var timestamp = moment().format('HH:mm:ss');
 
-  if(message.author.bot || message.content.indexOf(config.prefix) !== 0) return;
+  if(message.author.bot) return;
+
+  if(message.content.indexOf(config.prefix) !== 0) return;
 
   var args = message.content.slice(config.prefix.length).trim().split(/ +/g);
   var command = args.shift().toLowerCase();
-
   var msgGuild = (!message.guild) ? "Direct Messages" : message.guild.name;
 
   console.log(`${timestamp}: Attempting to process \'${command}\' sent by user \'${message.author.tag}\' in \'${msgGuild}\'...`)
@@ -32,7 +33,7 @@ client.on("message", async message => {
 
     commandFile.run(client, message, args);
     console.log(`${timestamp}: Processed command \'${command}\' succesfully.`);
-    message.react("☁")
+    message.react("☁");
   } catch (error) {
     console.log(`${timestamp}: Could not process command \'${command}\'.`);
     console.log(error);
