@@ -36,7 +36,7 @@ async function makeRole(color, id) {
     name: id,
     color: `0x${color}`,
     hoist: false,
-    mentionable: false,\
+    mentionable: false,
   });
   message.channel.send("Role maked");
 };
