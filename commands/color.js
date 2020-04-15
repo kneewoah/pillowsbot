@@ -36,7 +36,7 @@ async function makeRole(color, id) {
   message.channel.send("Role maked");
 };
 
-async function addRole(id) {
+async function addRole(roleName) {
   let role = await message.guild.roles.find(role => role.name === roleName);
   message.member.addRole(role.id);
 };
