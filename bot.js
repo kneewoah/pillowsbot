@@ -10,7 +10,6 @@ const timestamp = moment().format('HH:mm:ss');
 client.on("ready", () => {
 
   const owner = client.users.find(user => user.id === config.ownerID)
-  console.log(`${timestamp} "Pillows Bot" ignition sequence has commenced.`);
 });
 
 
