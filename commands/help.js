@@ -10,7 +10,7 @@ exports.run = (client, message, args) => {
 
       cmdArray.forEach(function(subArray) {
         var name = subArray[0];
-        var cmdFile = require(`./${name}.js`);
+        var cmdFile = require(`./${name.toLowerCase()}.js`);
         subArray.push(cmdFile.help.description, cmdFile.help.usage);
       });
 
