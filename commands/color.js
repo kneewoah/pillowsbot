@@ -42,7 +42,7 @@ async function makeRole(color, id) {
 };
 
 async function addRole(id) {
-  message.member.addRole(await findRole(id).id);
+  message.member.addRole(await findRole(id));
 };
 
 };
