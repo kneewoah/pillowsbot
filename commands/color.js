@@ -41,7 +41,7 @@ async function makeRole(color, id) {
 
 async function addRole(id) {
   let role = await findRole(id);
-  message.member.addRole(roleID.id);
+  message.member.addRole(role.id);
 };
 
 };
