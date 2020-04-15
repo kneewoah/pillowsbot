@@ -4,7 +4,7 @@ const fs = require('fs');
 
 exports.run = async (client, message, args) => {
   var xpData = JSON.parse(fs.readFileSync('../xp.json'));
-  var index = xpData.findIndex(entry => entry.id == message.author.id);
+  //var index = xpData.findIndex(entry => entry.id == message.author.id);
   // if (!index) {
   //   var newData = {
   //     id: `${message.author.id}`,
@@ -14,7 +14,7 @@ exports.run = async (client, message, args) => {
   //   }
   // }
   console.log(xpData);
-  console.log(index);
+  //console.log(index);
 
 };
 
