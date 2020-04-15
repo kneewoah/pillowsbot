@@ -2,8 +2,8 @@
 const Discord = require('discord.js');
 const client = new Discord.Client({disableEveryone: true});
 const config = require("./config.json");
-const moment = require('moment')
-const fs = require("fs");
+const moment = require('moment');
+const fs = require('fs');
 
 
 
@@ -23,12 +23,7 @@ client.on("message", async message => {
   var args = message.content.slice(config.prefix.length).trim().split(/ +/g);
   var command = args.shift().toLowerCase();
 
-  var msgGuild;
-  if(!message.guild) {
-    msgGuild = "Direct Messages";
-  } else {
-    msgGuild = message.guild.name;
-  };
+  var msgGuild = (!message.guild) ? "Direct Messages" : message.guild.name;
 
   console.log(`${timestamp}: Attempting to process \'${command}\' sent by user \'${message.author.tag}\' in \'${msgGuild}\'...`)
 
