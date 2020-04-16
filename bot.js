@@ -7,7 +7,6 @@ const fs = require('fs');
 
 // ON READY
 client.on("ready", () => {
-
   const owner = client.users.find(user => user.id === config.ownerID)
 });
 

@@ -29,5 +29,5 @@ if (index == -1) {
 fs.writeFile("./xp,json", JSON.stringify(xpData, null, 2), finished);
 function finished(err) {
   if (err) console.log(err);
-  console.log("XP Updated for " + message.author.id);
+  else console.log("XP Updated for " + message.author.tag);
 }
