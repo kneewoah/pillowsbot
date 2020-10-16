@@ -15,6 +15,6 @@ exports.run = (client, message, args, con) => {
 }
 
 exports.help = {
-  description: "how likely you are to get into a school",
-  usage: "!chanceme <school>"
+  description: "WIP - XP tracker",
+  usage: "!xp"
 };
