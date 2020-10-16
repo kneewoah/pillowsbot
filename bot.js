@@ -57,7 +57,7 @@ client.on('message', async message => {
         if(err) throw err;
         let oldTime = rows[0].timeStamp;
         diff = (unix - oldTime);
-      }
+      });
 
       if (diff < 60) return;
       let xp = rows[0].xp;
