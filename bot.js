@@ -9,43 +9,62 @@ const mysql = require('mysql');
 // ON READY
 client.on('ready', () => {
   const owner = client.users.find(user => user.id === config.ownerID)
+  console.log("Newo Bot is Online.");
 });
 
 // CONNECT TO DATABASE
-var con = mysql.createConnection({
+var database = mysql.createConnection({
   host: process.env.DATABASE_HOST,
   user: process.env.DATABASE_USER,
   password: process.env.DATABASE_PASSWORD,
   database: process.env.DATABASE
 });
 
-con.connect(err => {
+database.connect(err => {
   if(err) throw err;
   console.log("Connected to database");
 });
 
 // FUNCTIONS
 function generateXp() {
-  return 20; //update
+  var min = 15;
+  var max = 25;
+
+  return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
 
 // ON MESSAGE
 client.on('message', async message => {
-  var timestamp = moment().format('HH:mm:ss');
   if(message.author.bot) return;
 
+  var timestamp = moment().format('HH:mm:ss');
+  var unix = moment().unix();
+
   // XP HANDLER
-  con.query(`SELECT * FROM xp WHERE id = '${message.author.id}'`, (err, rows) => {
+
+
+  database.query(`SELECT * FROM xp WHERE id = '${message.author.id}'`, (err, rows) => {
     if(err) throw err;
 
     let sql;
 
     if(rows.length < 1) {
-      sql = `INSERT INTO xp (id, xp) VALUES ('${message.author.id}', ${generateXp()})`;
+      sql = `INSERT INTO xp (id, xp, timeStamp) VALUES ('${message.author.id}', ${generateXp()}, ${unix});`;
     } else {
-      let xp = rows[0].xp;
-      sql = `UPDATE xp SET xp = ${xp + generateXp()} WHERE id = '${message.author.id}'`;
+      let diff;
+      database.query(`SELECT * FROM timeStamp WHERE id = '${message.author.id}'`, (err, rows) => {
+        if(err) throw err;
+
+        let oldTime = rows[0].timeStamp;
+        diff = (unix - oldTime);
+      }
+      if (diff < 60) {
+        return;
+      } else {
+        let xp = rows[0].xp;
+        sql = `UPDATE xp SET xp = ${xp + generateXp()}, timeStamp = ${unix} WHERE id = '${message.author.id}'`;
+      }
     }
 
     con.query(sql, console.log);
@@ -71,7 +90,7 @@ client.on('message', async message => {
 
   if (exists) {
     try {
-      cmdFile.run(client, message, args, con);
+      cmdFile.run(client, message, args, database);
       console.log(`${timestamp}: Processed command \'${command}\' succesfully.`);
       message.react('☁');
     } catch (error) {
