@@ -4,10 +4,10 @@ const client = new Discord.Client({disableEveryone: true});
 const config = require("./config.json");
 const moment = require('moment');
 const fs = require('fs');
-const mysql = require("mysql");
+const mysql = require('mysql');
 
 // ON READY
-client.on("ready", () => {
+client.on('ready', () => {
   const owner = client.users.find(user => user.id === config.ownerID)
 });
 
@@ -31,7 +31,7 @@ function generateXp() {
 
 
 // ON MESSAGE
-client.on("message", async message => {
+client.on('message', async message => {
   // XP HANDLER 
   con.query(`SELECT * FROM xp WHERE id = '${message.author.id}'`, (err, rows) => {
     if(err) throw err;
@@ -65,7 +65,7 @@ client.on("message", async message => {
 
     commandFile.run(client, message, args, con);
     console.log(`${timestamp}: Processed command \'${command}\' succesfully.`);
-    message.react("☁");
+    message.react('☁');
   } catch (error) {
     console.log(`${timestamp}: Could not process command \'${command}\'.`);
     console.log(error);
@@ -74,7 +74,7 @@ client.on("message", async message => {
 });
 // USER JOIN
 
-client.on("guildMemberAdd", member => {
+client.on('guildMemberAdd', member => {
 
   let roleName = `${member.id}`
   if(member.guild.roles.find(role => role.name === roleName)) {
