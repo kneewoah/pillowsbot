@@ -63,7 +63,7 @@ client.on("message", async message => {
   try {
     let commandFile = require(`./commands/${command}.js`)
 
-    commandFile.run(client, message, args);
+    commandFile.run(client, message, args, con);
     console.log(`${timestamp}: Processed command \'${command}\' succesfully.`);
     message.react("☁");
   } catch (error) {
