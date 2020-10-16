@@ -65,7 +65,6 @@ client.on('message', async message => {
       con.query(sql, console.log);
     }
   });
-});
 
   // COMMAND HANDLER
   if(message.content.indexOf(config.prefix) !== 0) return;
