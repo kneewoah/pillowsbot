@@ -4,6 +4,7 @@ const client = new Discord.Client({disableEveryone: true});
 const config = require("./config.json");
 const moment = require('moment');
 const fs = require('fs');
+const mysql = require("mysql");
 
 // ON READY
 client.on("ready", () => {
