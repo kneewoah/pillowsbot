@@ -55,20 +55,17 @@ client.on('message', async message => {
       let diff;
       database.query(`SELECT * FROM timeStamp WHERE id = '${message.author.id}'`, (err, rows) => {
         if(err) throw err;
-
         let oldTime = rows[0].timeStamp;
         diff = (unix - oldTime);
       }
-      if (diff < 60) {
-        return;
-      } else {
-        let xp = rows[0].xp;
-        sql = `UPDATE xp SET xp = ${xp + generateXp()}, timeStamp = ${unix} WHERE id = '${message.author.id}'`;
-      }
-    }
 
-    con.query(sql, console.log);
+      if (diff < 60) return;
+      let xp = rows[0].xp;
+      sql = `UPDATE xp SET xp = ${xp + generateXp()}, timeStamp = ${unix} WHERE id = '${message.author.id}'`;
+      con.query(sql, console.log);
+    }
   });
+});
 
   // COMMAND HANDLER
   if(message.content.indexOf(config.prefix) !== 0) return;
