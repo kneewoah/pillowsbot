@@ -13,7 +13,7 @@ client.on('ready', () => {
 
 // CONNECT TO DATABASE
 var con = mysql.createConnection({
-  host: "process.env.DATABASE_HOST",
+  host: "sql9.freesqldatabase.com",
   user: "process.env.DATABASE_USER",
   password: "process.env.DATABASE_PASSWORD",
   database: "process.env.DATABASE"
