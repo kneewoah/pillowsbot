@@ -1,7 +1,7 @@
 // BEFORE LAUNCH
 const Discord = require('discord.js');
 const client = new Discord.Client({disableEveryone: true});
-const config = require("./config.json");
+const config = require('./config.json');
 const moment = require('moment');
 const fs = require('fs');
 const mysql = require('mysql');
