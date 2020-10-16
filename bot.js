@@ -32,7 +32,10 @@ function generateXp() {
 
 // ON MESSAGE
 client.on('message', async message => {
-  // XP HANDLER 
+  var timestamp = moment().format('HH:mm:ss');
+  if(message.author.bot) return;
+
+  // XP HANDLER
   con.query(`SELECT * FROM xp WHERE id = '${message.author.id}'`, (err, rows) => {
     if(err) throw err;
 
@@ -47,11 +50,8 @@ client.on('message', async message => {
 
     con.query(sql, console.log);
   });
-  
-  var timestamp = moment().format('HH:mm:ss');
 
-  if(message.author.bot) return;
-
+  // COMMAND HANDLER
   if(message.content.indexOf(config.prefix) !== 0) return;
 
   var args = message.content.slice(config.prefix.length).trim().split(/ +/g);
@@ -60,23 +60,34 @@ client.on('message', async message => {
 
   console.log(`${timestamp}: Attempting to process \'${command}\' sent by user \'${message.author.tag}\' in \'${msgGuild}\'...`)
 
+  var exists = false;
+  let cmdFile;
   try {
-    let commandFile = require(`./commands/${command}.js`)
+    cmdFile = require(`./commands/${command}.js`);
+    exists = true;
+  } catch (failure) {
+    // No error needed, command does not exist
+  }
 
-    commandFile.run(client, message, args, con);
-    console.log(`${timestamp}: Processed command \'${command}\' succesfully.`);
-    message.react('☁');
-  } catch (error) {
-    console.log(`${timestamp}: Could not process command \'${command}\'.`);
-    console.log(error);
+  if (exists) {
+    try {
+      cmdFile.run(client, message, args, con);
+      console.log(`${timestamp}: Processed command \'${command}\' succesfully.`);
+      message.react('☁');
+    } catch (error) {
+      console.log(`${timestamp}: Could not process command \'${command}\'.`);
+      console.log(error);
+    }
   }
 
 });
-// USER JOIN
 
+// USER JOIN
 client.on('guildMemberAdd', member => {
 
-  let roleName = `${member.id}`
+  // COLOR GREETER
+  let roleName = `${member.id}`;
+
   if(member.guild.roles.find(role => role.name === roleName)) {
     let roleID = member.guild.roles.find(role => role.name === roleName).id;
     member.addRole(roleID);
@@ -88,8 +99,7 @@ client.on('guildMemberAdd', member => {
 });
 
 // ERROR
-
 client.on('error', console.error);
 
-// TOKEN
+// LOGIN
 client.login(process.env.TOKEN);
