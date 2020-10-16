@@ -10,9 +10,43 @@ client.on("ready", () => {
   const owner = client.users.find(user => user.id === config.ownerID)
 });
 
+// CONNECT TO DATABASE
+var con = mysql.createConnection({
+  host: "process.env.DATABASE_HOST",
+  user: "process.env.DATABASE_USER",
+  password: "process.env.DATABASE_PASSWORD",
+  database: "process.env.DATABASE"
+});
+
+con.connect(err => {
+  if(err) throw err;
+  console.log("Connected to database");
+});
+
+// FUNCTIONS
+function generateXp() {
+  return 20; //update
+}
+
 
 // ON MESSAGE
 client.on("message", async message => {
+  // XP HANDLER 
+  con.query(`SELECT * FROM xp WHERE id = '${message.author.id}'`, (err, rows) => {
+    if(err) throw err;
+
+    let sql;
+
+    if(rows.length < 1) {
+      sql = `INSERT INTO xp (id, xp) VALUES ('${message.author.id}', ${generateXp()})`;
+    } else {
+      let xp = rows[0].xp;
+      sql = `UPDATE xp SET xp = ${xp + generateXp()} WHERE id = '${message.author.id}'`;
+    }
+
+    con.query(sql, console.log);
+  });
+  
   var timestamp = moment().format('HH:mm:ss');
 
   if(message.author.bot) return;
