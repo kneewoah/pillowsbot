@@ -40,7 +40,7 @@ client.on('message', async message => {
 
   var timestamp = moment().format('HH:mm:ss');
   var unix = moment().unix();
-  
+
 
   // XP HANDLER
 
@@ -57,6 +57,7 @@ client.on('message', async message => {
         if(err) throw err;
         let oldTime = rows[0].xp;
         diff = (unix - oldTime);
+        message.channel.send(diff);
       });
 
       if (diff < 60) return;
