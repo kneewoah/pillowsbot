@@ -50,7 +50,7 @@ client.on('message', async message => {
     let sql;
 
     if(rows.length < 1) {
-      sql = `INSERT INTO xp (id, xp, timeStamp) VALUES ('${message.author.id}', ${generateXp()}, ${unix});`;
+      sql = `INSERT INTO xp (id, xp, timeStamp) VALUES ('${message.author.id}', ${generateXp()}, ${unix})`;
     } else {
       let diff;
       database.query(`SELECT * FROM timeStamp WHERE id = '${message.author.id}'`, (err, rows) => {
