@@ -57,10 +57,10 @@ client.on('message', async message => {
         let oldTime = rows[0].timeStamp;
         diff = (unix - oldTime);
       });
-
+      messsage.channel.send(diff);
       if (diff < 60) return;
       let xp = rows[0].xp;
-      
+
       sql = `UPDATE xp SET xp = ${xp + generateXp()}, timeStamp = ${unix} WHERE id = '${message.author.id}'`;
       database.query(sql, console.log);
     }
