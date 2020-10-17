@@ -55,7 +55,7 @@ client.on('message', async message => {
       let diff;
       database.query(`SELECT * FROM timeStamp WHERE id = '${message.author.id}'`, (err, rows) => {
         if(err) throw err;
-        let oldTime = rows[0].timeStamp;
+        let oldTime = rows[0].xp;
         diff = (unix - oldTime);
       });
 
