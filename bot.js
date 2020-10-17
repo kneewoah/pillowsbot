@@ -62,7 +62,7 @@ client.on('message', async message => {
       if (diff < 60) return;
       let xp = rows[0].xp;
       sql = `UPDATE xp SET xp = ${xp + generateXp()}, timeStamp = ${unix} WHERE id = '${message.author.id}'`;
-      con.query(sql, console.log);
+      database.query(sql, console.log);
     }
   });
 
