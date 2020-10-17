@@ -60,7 +60,7 @@ client.on('message', async message => {
 
       if (diff < 60) return;
       let xp = rows[0].xp;
-      message.channel.send(rows);
+      message.channel.send(rows[0]);
       sql = `UPDATE xp SET xp = ${xp + generateXp()}, timeStamp = ${unix} WHERE id = '${message.author.id}'`;
       database.query(sql, console.log);
     }
