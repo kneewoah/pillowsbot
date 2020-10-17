@@ -53,9 +53,9 @@ client.on('message', async message => {
       sql = `INSERT INTO xp (id, xp, timeStamp) VALUES ('${message.author.id}', ${generateXp()}, ${unix})`;
     } else {
       let diff;
-      database.query(`SELECT timeStamp FROM xp WHERE id = '${message.author.id}'`, (err, rows) => {
+      database.query(`SELECT * FROM xp WHERE id = '${message.author.id}'`, (err, rows) => {
         if(err) throw err;
-        let oldTime = rows[0].xp;
+        let oldTime = rows[0].timeStamp;
         diff = (unix - oldTime);
         message.channel.send(oldTime);
       });
