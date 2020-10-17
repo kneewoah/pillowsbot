@@ -52,13 +52,10 @@ client.on('message', async message => {
     if(rows.length < 1) {
       sql = `INSERT INTO xp (id, xp, timeStamp) VALUES ('${message.author.id}', ${generateXp()}, ${unix})`;
     } else {
-      let diff;
-      database.query(`SELECT * FROM xp WHERE id = '${message.author.id}'`, (err, rows) => {
-        if(err) throw err;
-        let oldTime = rows[0].timeStamp;
-        diff = (unix - oldTime);
-        message.channel.send(oldTime);
-      });
+
+      var oldTime = rows[0].timeStamp;
+      var diff = (unix - oldTime);
+      message.channel.send(oldTime);
 
       if (diff < 60) return;
       let xp = rows[0].xp;
